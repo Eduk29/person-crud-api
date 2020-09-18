@@ -2,6 +2,7 @@ package br.com.person.crud.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,18 @@ public class PersonController {
 	private PersonService personService;
 
 	@GetMapping("")
-	public CustomPage<Person> find(@RequestParam(value = "$pageNumber", required = false) Integer pageNumber, @RequestParam(value = "$pageSize", required = false) Integer pageSize) {
-		return personService.findAll(pageNumber, pageSize);
+	public CustomPage<Person> find(
+			@RequestParam(value = "$pageNumber", required = false) Integer pageNumber,
+			@RequestParam(value = "$pageSize", required = false) Integer pageSize,
+			@RequestParam(value = "$filter", required = false) String filter) {
+		return personService.find(pageNumber, pageSize, filter);
+	}
+	
+	@GetMapping("/{id}")
+	public CustomPage<Person> findById(
+			@PathVariable("id") Integer id,
+			@RequestParam(value = "$pageNumber", required = false) Integer pageNumber,
+			@RequestParam(value = "$pageSize", required = false) Integer pageSize) {
+		return this.personService.findById(id, pageNumber, pageSize);
 	}
 }
