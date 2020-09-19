@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +38,12 @@ public class PersonController {
 	}
 	
 	@PostMapping(path = "/new", consumes = "application/json")
-	public Person save(@RequestBody Person personToAdd) {
-		return this.personService.save(personToAdd);
+	public Person save(@RequestBody Person person) {
+		return this.personService.save(person);
+	}
+	
+	@PutMapping(path = "/{id}/update") 
+	public Person update(@RequestBody Person person, @PathVariable("id") Integer id) {
+		return this.personService.update(person, id);
 	}
 }
