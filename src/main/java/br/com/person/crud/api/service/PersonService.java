@@ -62,19 +62,8 @@ public class PersonService {
 		return personPage;
 	}
 	
-	public CustomPage<Person> findById(Integer id, Integer pageNumber, Integer pageSize) {
-		
-		if (pageNumber == null || pageSize == null) {
-			pageNumber = 0;
-			pageSize = 10;
-		}
-		
-		Pageable pageable = PageRequest.of(pageNumber, pageSize);
-		Page<Person> page = this.personRepository.findById(id, pageable);
-		
-		CustomPage<Person> customPage = new CustomPage<Person>(page);
-		
-		return customPage;
+	public Person findById(Integer id) {
+		return this.personRepository.findById(id);
 	}
 	
 	public Person save(Person person) {

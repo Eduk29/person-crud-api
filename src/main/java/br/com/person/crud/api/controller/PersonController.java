@@ -31,11 +31,8 @@ public class PersonController {
 	}
 	
 	@GetMapping("/{id}")
-	public CustomPage<Person> findById(
-			@PathVariable("id") Integer id,
-			@RequestParam(value = "$pageNumber", required = false) Integer pageNumber,
-			@RequestParam(value = "$pageSize", required = false) Integer pageSize) {
-		return this.personService.findById(id, pageNumber, pageSize);
+	public Person findById(@PathVariable("id") Integer id) {
+		return this.personService.findById(id);
 	}
 	
 	@PostMapping(path = "/new", consumes = "application/json")
