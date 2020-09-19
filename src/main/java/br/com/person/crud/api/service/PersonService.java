@@ -85,6 +85,10 @@ public class PersonService {
 		person.setId(id);
 		return this.personRepository.save(person);
 	}
+	
+	public void remove(Integer id) {
+		this.personRepository.deleteById(id);
+	}
 
 	private CustomPage<Person> findAll(Integer pageNumber, Integer pageSize) {
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);

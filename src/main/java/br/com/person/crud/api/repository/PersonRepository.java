@@ -17,4 +17,5 @@ public interface PersonRepository extends PagingAndSortingRepository<Person, Lon
 	Page<Person> findBySpeciesLike(String species, Pageable pageable);
 	Page<Person> findById(Integer id, Pageable pageable);
 	<S extends Person> S save(Person person);
+	void deleteById(Integer id);
 }
