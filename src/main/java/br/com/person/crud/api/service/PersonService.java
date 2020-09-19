@@ -76,6 +76,10 @@ public class PersonService {
 		
 		return customPage;
 	}
+	
+	public Person save(Person person) {
+		return this.personRepository.save(person);
+	}
 
 	private CustomPage<Person> findAll(Integer pageNumber, Integer pageSize) {
 		Pageable pageable = PageRequest.of(pageNumber, pageSize);

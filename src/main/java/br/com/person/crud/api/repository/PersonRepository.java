@@ -14,5 +14,6 @@ public interface PersonRepository extends PagingAndSortingRepository<Person, Lon
 	Page<Person> findByHomeworldLike(String homeworld, Pageable pageable);
 	Page<Person> findBySpeciesLike(String species, Pageable pageable);
 	Page<Person> findById(Integer id, Pageable pageable);
+	Person save(Person person);
 	
 }
